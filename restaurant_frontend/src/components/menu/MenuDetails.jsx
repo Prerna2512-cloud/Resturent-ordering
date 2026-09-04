@@ -52,7 +52,7 @@ function MenuDetails() {
       <div className="menu-details-card">
         <h2>{menu.name}</h2>
         <img
-          src={`http://127.0.0.1:8000${menu.image}`}
+          src={`https://restaurant-backend-1gee.onrender.com${menu.image}`}
           alt={menu.name}
           className="details-image"
         />
