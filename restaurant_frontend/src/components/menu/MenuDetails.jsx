@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMenu } from "../../api/menuApi";
-import { addCartItem } from "../../api/cartApi";
 import { useNavigate } from "react-router-dom";
 
 function MenuDetails() {

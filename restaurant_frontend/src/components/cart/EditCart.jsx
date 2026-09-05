@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCartItem, updateCartItem } from "../../api/cartApi";
 
@@ -11,11 +11,7 @@ function EditCart() {
     quantity: 1,
   });
 
-  useEffect(() => {
-    fetchCart();
-  }, []);
-
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     try {
       const response = await getCartItem(id);
       setCart({
@@ -26,7 +22,13 @@ function EditCart() {
       console.log(error);
       alert("Failed to load cart item");
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    const timeout = setTimeout(fetchCart, 0);
+
+    return () => clearTimeout(timeout);
+  }, [fetchCart]);
 
   const handleChange = (e) => {
     setCart({

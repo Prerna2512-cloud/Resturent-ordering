@@ -11,7 +11,6 @@ function AddOrder() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [user, setUser] = useState(null);
     const [cartItems, setCartItems] = useState([]);
     const [hasAddress, setHasAddress] = useState(false);
 
@@ -170,9 +169,6 @@ function AddOrder() {
 
             const userData =
                 response.user;
-
-
-            setUser(userData);
 
 
             if (

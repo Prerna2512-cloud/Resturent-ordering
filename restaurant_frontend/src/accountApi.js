@@ -21,7 +21,7 @@ export const getAllUsers = async () => {
 // Get User By ID
 export const getUser = async (userId) => {
   const response = await api.get(
-    `/accounts/get_user_by_Id/int:user_id/`
+    `/accounts/get_user_by_Id/${userId}/`
   );
   return response.data;
 };
@@ -29,7 +29,7 @@ export const getUser = async (userId) => {
 // Update User
 export const updateUser = async (userId, userData) => {
   const response = await api.put(
-    `/accounts/update_User/int:user_id/`,
+    `/accounts/update_User/${userId}/`,
     userData
   );
   return response.data;
@@ -38,7 +38,7 @@ export const updateUser = async (userId, userData) => {
 // Delete User
 export const deleteUser = async (userId) => {
   const response = await api.delete(
-    `/accounts/delete_User/int:user_id/`
+    `/accounts/delete_User/${userId}/`
   );
   return response.data;
 };

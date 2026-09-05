@@ -92,7 +92,7 @@ function GroupOrder() {
             setLoading(true);
             setError("");
 
-            const response = await joinGroupOrder(
+            await joinGroupOrder(
                 groupCode.trim(),
                 userId
             );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   getAllOrders,
@@ -22,21 +22,7 @@ function OrderList() {
   // FETCH ORDERS
   // =========================
 
-  useEffect(() => {
-
-    fetchOrders();
-
-    // Refresh every 3 seconds
-    const interval = setInterval(() => {
-      fetchOrders();
-    }, 3000);
-
-    return () => clearInterval(interval);
-
-  }, []);
-
-
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
 
     try {
 
@@ -110,7 +96,6 @@ function OrderList() {
                 return {
 
                   ...order,
-
                   status:
                     delivery.delivery_status ||
                     order.status
@@ -119,7 +104,7 @@ function OrderList() {
 
               }
 
-              catch (error) {
+              catch {
 
                 return order;
 
@@ -153,7 +138,23 @@ function OrderList() {
 
     }
 
-  };
+  }, []);
+
+  useEffect(() => {
+
+    const timeout = setTimeout(fetchOrders, 0);
+
+    // Refresh every 3 seconds
+    const interval = setInterval(() => {
+      fetchOrders();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+
+  }, [fetchOrders]);
 
 
   // =========================

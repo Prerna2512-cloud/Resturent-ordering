@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import RegisterUser from './components/accounts/RegisterUser'
 import LoginUser from './components/accounts/LoginUser'
